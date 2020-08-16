@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: micro-ingress
+  namespace: default
+spec:
+  rules:
+    - host: 
+      http:
+        paths:
+        - path: /hw
+          backend:
+              serviceName: muj-svc
+              servicePort: 80
+    - host: 
+      http:
+        paths:
+        - path: /bye
+          backend:
+              serviceName: bye-svc
+              servicePort: 80

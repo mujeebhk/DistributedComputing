@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bye-demo
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: bye-demo
+  template:
+    metadata:
+      labels:
+        app: bye-demo
+    spec:
+      containers:
+      - name: bye-demo
+        image: bye:latest
+        imagePullPolicy: Never
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: bye-svc
+spec:
+  selector:
+    app: bye-demo
+  ports:
+  - port: 80
+    targetPort: 8080
+    protocol: TCP
